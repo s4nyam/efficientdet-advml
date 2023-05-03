@@ -1,5 +1,6 @@
 # efficientdet-advml
- Advanced Machine Learning project 2023 @ HiØ - Using EfficientDet for detecting complex maritime objects
+## Advanced Machine Learning project 2023 @ HiØ - Using EfficientDet for detecting complex maritime objects
+
 
 ![0001](https://user-images.githubusercontent.com/13884479/227912925-6664f257-eb88-4895-8f10-3e596cea468b.jpg)
 ![0002](https://user-images.githubusercontent.com/13884479/227912957-17168ce2-957c-450f-b197-c13e5e6f3531.jpg)
