@@ -1,6 +1,6 @@
 # efficientdet-advml
 
-Paper Link - https://arxiv.org/pdf/2306.06075
+Paper Link - https://ieeexplore.ieee.org/abstract/document/10541265
 
 Download All Supporting Material and Files for the paper and project here (This project was also part of my advanced machine learning course at HiØ, Norway) -  https://archive.org/download/deepseanet/deepseanet.zip
 
