@@ -1,4 +1,7 @@
 # efficientdet-advml
+
+Download All Supporting Material and Files for the paper and project here (This project was also part of my advanced machine learning course at HiØ, Norway) -  https://archive.org/download/deepseanet/deepseanet.zip
+
 ## Advanced Machine Learning Using EfficientDet for detecting complex maritime objects
 
 ![image](https://user-images.githubusercontent.com/13884479/236055194-b57d3b9c-e6fc-48f9-98c1-52dc1ff71838.png)
