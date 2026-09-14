@@ -217,32 +217,6 @@ accidental.
 
 ---
 
-## Working with the dataset
-
-The Brackish dataset ([Pedersen et al., CVPRW 2019](https://openaccess.thecvf.com/content_CVPRW_2019/html/AAMVEM/Pedersen_Detection_of_Marine_Animals_in_a_New_Underwater_Dataset_with_CVPRW_2019_paper.html))
-is **not** included and must not be committed. Get it from
-[Kaggle](https://www.kaggle.com/datasets/aalborguniversity/brackish-dataset) or
-[Roboflow](https://universe.roboflow.com/brackish/brackish-2fdzd).
-
-```bash
-export ROBOFLOW_API_KEY=...        # never hardcode this
-
-deepseanet prepare --images data/images --labels data/labels --normalize
-deepseanet split   --images data/images --labels data/labels \
-                   --strategy grouped --output data/brackish
-deepseanet convert --to coco --images data/brackish/images/train \
-                   --labels data/brackish/labels/train \
-                   --output data/brackish/train_coco.json
-```
-
-**Why `--strategy grouped` is the default.** Frames come from continuous video,
-so consecutive frames are near-identical. A random split scatters
-near-duplicates across train and test, and every score goes up. Grouped
-splitting keeps whole source clips on one side. Expect lower numbers — that is
-the conservative estimate. Details in [`docs/DATASET.md`](docs/DATASET.md).
-
----
-
 ## Model weights
 
 The EfficientDet-Lite0 model is committed at
