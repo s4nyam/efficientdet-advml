@@ -111,9 +111,6 @@ efficientdet-advml/
 └── .github/workflows/       Lint · test on 3.9/3.11/3.12 · secret scan
 ```
 
-> **Reading this after a while away?** [`docs/MIGRATION.md`](docs/MIGRATION.md)
-> maps every old path to its new home and explains what was removed.
-
 ---
 
 ## Results
@@ -324,9 +321,6 @@ make typecheck      # mypy
 make report         # summarise the committed runs
 ```
 
-CI runs lint, tests on Python 3.9/3.11/3.12, and a `gitleaks` secret scan on
-every push, and the same scan is available as a pre-commit hook. See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/SECURITY.md`](docs/SECURITY.md).
 
 ---
 
