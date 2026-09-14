@@ -141,13 +141,6 @@ Full tables, including class-wise results, in [`docs/RESULTS.md`](docs/RESULTS.m
 | EfficientDet-Lite0 | 350 | 0.898 | 0.601 | — | — | notebook output |
 | Faster R-CNN X101-FPN | 300 iters | 0.433 | 0.204 | — | — | notebook output |
 
-The first two rows are parsed from the committed CSV logs and are the ones
-`deepseanet report` regenerates:
-
-```bash
-deepseanet report --results results
-```
-
 ---
 
 ## The BiSkFPN neck
