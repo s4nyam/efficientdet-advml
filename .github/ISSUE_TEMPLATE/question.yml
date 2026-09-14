@@ -1,0 +1,15 @@
+name: Question about the paper or results
+description: Ask about the method, the numbers, or how to reproduce something
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before asking: `docs/REPRODUCIBILITY.md` records what the committed runs
+        actually did and where they differ from the published tables.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true

@@ -1,0 +1,23 @@
+# Proposed model: EfficientDet backbone + BiSkFPN neck + focal-loss head.
+name: deepseanet-biskfpn
+model: deepseanet
+neck: biskfpn
+phi: 0
+num_classes: 6
+image_size: 512
+
+epochs: 350
+batch_size: 64
+optimizer: sgd
+learning_rate: 0.01
+weight_decay: 0.0005
+
+# Loss weights: L = L_cls + alpha * L_box + beta * L_reg
+alpha: 50.0
+beta: 1.0
+
+seed: 0
+adversarial: false
+
+data_root: data/brackish
+split: grouped        # grouped keeps whole source clips on one side of the split

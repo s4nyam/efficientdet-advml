@@ -1,0 +1,17 @@
+# Settings the committed YOLOv5 run actually used (results/yolov5s/opt.yaml).
+# Note the epoch count: 100, not the 350 reported in the paper's Table 4.
+name: yolov5s
+weights: yolov5s.pt
+imgsz: 416
+epochs: 100
+batch_size: 16
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
+box: 0.05
+cls: 0.5
+obj: 1.0
+seed: 0

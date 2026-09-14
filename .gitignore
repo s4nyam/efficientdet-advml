@@ -1,1 +1,70 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+
+# ---- Testing and tooling ----
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ---- Notebooks ----
+.ipynb_checkpoints/
+
+# ---- Data: never commit the dataset ----
+# These are ROOT-ANCHORED on purpose. An unanchored `data/` also matches
+# src/deepseanet/data/ and silently drops the package from the commit.
+/data/
+/datasets/
+/train/
+/valid/
+/test/
+/images/
+/labels/
+/annots/
+/roboflow.zip
+/archive.zip
+*.avi
+*.mp4
+
+# ---- Model weights: fetch with scripts/fetch_weights.sh ----
+/weights/
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+# ...but the EfficientDet-Lite0 export is small enough to keep in git.
+!results/efficientdet_lite0/model.tflite
+
+# ---- Training output ----
+/runs/
+/outputs/
+/wandb/
+/lightning_logs/
+events.out.tfevents.*
+*.log
+
+# ---- Secrets: keys belong in the environment, not in git ----
+.env
+.env.*
+*.pem
+secrets.yaml
+.roboflow
+
+# ---- OS and editor ----
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

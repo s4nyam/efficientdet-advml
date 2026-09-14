@@ -1,0 +1,42 @@
+{
+  "note": "Checksums of the checkpoints that were committed to the original repository. The two files under 5_GradCAM++/ were mislabelled: their MD5s are byte-identical to the YOLOv8 and YOLOv5 checkpoints respectively. Neither is an EfficientDet model. See docs/REPRODUCIBILITY.md.",
+  "files": [
+    {
+      "path": "weights/yolov5s_best.pt",
+      "md5": "cece64898eb8458faaf06975837dab99",
+      "bytes": 14292605,
+      "original_path": "1_YOLO5_Experiment/content/yolov5/runs/train/exp/weights/best.pt",
+      "also_committed_as": "5_GradCAM++/best_yolov8.pt",
+      "note": "YOLOv5s, 100 epochs, 416 px"
+    },
+    {
+      "path": "weights/yolov5s_last.pt",
+      "md5": "debec0b54665ad124c78edfb95581443",
+      "bytes": 14292605,
+      "original_path": "1_YOLO5_Experiment/content/yolov5/runs/train/exp/weights/last.pt",
+      "note": "YOLOv5s, final epoch"
+    },
+    {
+      "path": "weights/yolov8s_best.pt",
+      "md5": "f7be0694bee42e7bf4c59d18dbdeafd4",
+      "bytes": 22495864,
+      "original_path": "2_YOLO8_Experiment/runs/detect/train/weights/best.pt",
+      "also_committed_as": "5_GradCAM++/best_efficientDet.pt",
+      "note": "YOLOv8s, 100 epochs, 800 px"
+    },
+    {
+      "path": "weights/yolov8s_last.pt",
+      "md5": "621823704a1e5c836b9a67e02a4a03f3",
+      "bytes": 22495864,
+      "original_path": "2_YOLO8_Experiment/runs/detect/train/weights/last.pt",
+      "note": "YOLOv8s, final epoch"
+    },
+    {
+      "path": "results/efficientdet_lite0/model.tflite",
+      "md5": "0c7dd714feb877f9d094d3ab9ca6056d",
+      "bytes": 4450334,
+      "original_path": "3_EfficientDet_Experiment/main_350epochs_AWS/model.tflite",
+      "note": "EfficientDet-Lite0, 350 epochs. Committed in this repository; the only genuine EfficientDet artefact from the project."
+    }
+  ]
+}

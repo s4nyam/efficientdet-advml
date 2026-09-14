@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepseanet"
+version = "2.0.0"
+description = "Underwater object detection on the Brackish dataset: EfficientDet with a BiSkFPN neck, adversarial training and class activation maps."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Sanyam Jain", email = "sanyamj@hiof.no" }]
+keywords = [
+    "object-detection", "efficientdet", "underwater", "marine",
+    "adversarial-robustness", "explainable-ai", "brackish-dataset",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "numpy>=1.21",
+    "pillow>=9.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0", "torchvision>=0.15"]
+viz = ["opencv-python>=4.6", "matplotlib>=3.5"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pre-commit>=3.5",
+]
+all = ["deepseanet[torch,viz,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/s4nyam/efficientdet-advml"
+Paper = "https://ieeexplore.ieee.org/document/10541265"
+Preprint = "https://arxiv.org/abs/2306.06075"
+"Project page" = "https://s4nyam.github.io/deepseanet/"
+Issues = "https://github.com/s4nyam/efficientdet-advml/issues"
+
+[project.scripts]
+deepseanet = "deepseanet.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+warn_unused_ignores = false
+disallow_untyped_defs = false
+
+[tool.coverage.run]
+source = ["src/deepseanet"]
+omit = ["*/cli.py"]

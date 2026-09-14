@@ -1,0 +1,10 @@
+-r requirements.txt
+torch>=2.0
+torchvision>=0.15
+opencv-python>=4.6
+matplotlib>=3.5
+pytest>=7.4
+pytest-cov>=4.1
+ruff>=0.4
+mypy>=1.8
+pre-commit>=3.5

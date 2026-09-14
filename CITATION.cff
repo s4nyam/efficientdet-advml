@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "DeepSeaNet: Improving Underwater Object Detection using EfficientDet"
+message: "If you use this software or the results it accompanies, please cite the paper below."
+type: software
+authors:
+  - family-names: Jain
+    given-names: Sanyam
+    affiliation: "Østfold University College, Halden, Norway"
+    email: sanyamj@hiof.no
+repository-code: "https://github.com/s4nyam/efficientdet-advml"
+url: "https://s4nyam.github.io/deepseanet/"
+license: MIT
+version: 2.0.0
+keywords:
+  - object detection
+  - EfficientDet
+  - underwater imaging
+  - adversarial robustness
+  - explainable AI
+preferred-citation:
+  type: conference-paper
+  title: "DeepSeaNet: Improving Underwater Object Detection using EfficientDet"
+  authors:
+    - family-names: Jain
+      given-names: Sanyam
+  collection-title: "2024 4th International Conference on Applied Artificial Intelligence (ICAPAI)"
+  publisher:
+    name: IEEE
+  year: 2024
+  start: 1
+  end: 11
+  doi: "10.1109/ICAPAI61893.2024.10541265"

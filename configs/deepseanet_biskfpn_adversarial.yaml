@@ -1,0 +1,24 @@
+# Adversarial training with universal adversarial perturbations, introduced on
+# a curriculum: the first 20% of epochs are clean, then epsilon ramps to 8/255.
+name: deepseanet-biskfpn-uap
+model: deepseanet
+neck: biskfpn
+phi: 0
+num_classes: 6
+image_size: 512
+
+epochs: 350
+batch_size: 64
+optimizer: sgd
+learning_rate: 0.01
+weight_decay: 0.0005
+alpha: 50.0
+beta: 1.0
+
+seed: 0
+adversarial: true
+uap_epsilon: 0.03137254901960784   # 8/255
+uap_warmup_frac: 0.2
+
+data_root: data/brackish
+split: grouped

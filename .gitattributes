@@ -1,2 +1,20 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Normalise line endings.
+* text=auto eol=lf
+
+# Binary assets: never diff, never normalise.
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.pdf   binary
+*.tflite binary
+*.avi   binary
+
+# Large checkpoints go through Git LFS if you choose to commit them.
+# Run `git lfs install` once before the first commit.
+*.pt    filter=lfs diff=lfs merge=lfs -text
+*.pth   filter=lfs diff=lfs merge=lfs -text
+*.onnx  filter=lfs diff=lfs merge=lfs -text
+
+# Notebooks: keep them out of the language statistics and out of diffs.
+*.ipynb linguist-documentation
+*.ipynb -diff

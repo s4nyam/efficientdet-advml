@@ -1,0 +1,24 @@
+# Dataset description. Class ids are the ones carried by the Brackish boxes.
+name: brackish
+source:
+  paper: "Pedersen et al., Detection of Marine Animals in a New Underwater Dataset with Varying Visibility, CVPRW 2019"
+  kaggle: "https://www.kaggle.com/datasets/aalborguniversity/brackish-dataset"
+  roboflow: "https://universe.roboflow.com/brackish/brackish-2fdzd"
+
+frame_width: 960
+frame_height: 540
+image_format: jpg
+
+num_classes: 6
+names:
+  0: fish
+  1: small_fish
+  2: crab
+  3: shrimp
+  4: jellyfish
+  5: starfish
+
+split:
+  strategy: grouped     # see docs/REPRODUCIBILITY.md on why random splits leak
+  ratios: [0.7, 0.2, 0.1]
+  seed: 0
