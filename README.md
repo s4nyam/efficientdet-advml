@@ -217,79 +217,7 @@ accidental.
 
 ---
 
-## Model weights
 
-The EfficientDet-Lite0 model is committed at
-`results/efficientdet_lite0/model.tflite` (4.4 MB). The YOLO checkpoints are
-too large for git:
-
-```bash
-bash scripts/fetch_weights.sh
-deepseanet verify --manifest results/checkpoints.json
-```
-
-> **A note on filenames.** Two checkpoints archived in 2023 under
-> `5_GradCAM++/` carry names that do not match their contents: by MD5,
-> `best_efficientDet.pt` is the YOLOv8s model and `best_yolov8.pt` is the
-> YOLOv5s model. `scripts/fetch_weights.sh` downloads them under corrected
-> names and `deepseanet verify` checks every file against
-> [`results/checkpoints.json`](results/checkpoints.json), so this is handled
-> for you — it matters only if you are working from an old clone.
-
----
-
-## Scope and reproducibility
-
-This repository is the archived code and logs from the project, plus reference
-implementations of the methods the paper describes. It is not a one-command
-regeneration of the published tables, and it is worth being precise about why:
-
-- **Archived runs.** One training run per detector is kept here; Table 5
-  reports the mean of five repetitions, and the repeated runs were not archived.
-- **Reference implementations.** The BiSkFPN neck, Swish, the multi-focal head,
-  UAP generation and the curriculum schedule in `src/` were written for this
-  release from the equations in the paper. They are tested for shape, gradient
-  flow and numerical behaviour, and they are the clearest statement of the
-  method available in code — but they are a re-implementation, so read their
-  output as independent of the published tables rather than as a regeneration
-  of them.
-- **Configuration.** The archived YOLO runs log 100 epochs where Table 4 lists
-  350, and the archived CAM notebooks use EigenCAM; `src/` provides GradCAM++
-  as well so the two can be compared directly.
-- **Metrics.** Tables 5 and 6 measure different things — one is a strict
-  averaged-IoU metric and the other is not — so they should not be read as two
-  views of a single number.
-
-[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) records each point with the
-evidence behind it, and section 5 lists what *can* be reproduced from what is
-here.
-
-### Known limitations of any result on this data
-
-These are properties of the dataset and the evaluation protocol. They apply to
-every published benchmark on Brackish, this work included.
-
-| | |
-|---|---|
-| **Split leakage** | Frames come from continuous video, so a random split places near-duplicates on both sides and raises every score. Use `--strategy grouped`. |
-| **AP@0.5 saturates** | Several detectors pass 0.97; AP@[.5:.95] separates them far better. |
-| **One site, one camera** | No evidence of transfer to other water, depths or hardware. |
-| **Class imbalance** | Shrimp and jellyfish are 3–4% of boxes; a single mean hides them. |
-
----
-
-## Development
-
-```bash
-make install-dev    # everything + pre-commit hooks
-make test           # pytest
-make lint           # ruff check + format
-make typecheck      # mypy
-make report         # summarise the committed runs
-```
-
-
----
 
 ## Citation
 
@@ -306,17 +234,6 @@ make report         # summarise the committed runs
 }
 ```
 
-Please also cite the dataset:
-
-```bibtex
-@inproceedings{Pedersen2019Brackish,
-  author    = {Pedersen, Malte and Bruslund Haurum, Joakim and Gade, Rikke and Moeslund, Thomas B.},
-  title     = {Detection of Marine Animals in a New Underwater Dataset with Varying Visibility},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
-  year      = {2019},
-  pages     = {18--26}
-}
-```
 
 ---
 
