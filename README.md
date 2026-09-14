@@ -19,7 +19,7 @@ rather than the water.
 [What's in here](#whats-in-here) ·
 [Results](#results) ·
 [The BiSkFPN neck](#the-biskfpn-neck) ·
-[Reproducibility](#reproducibility) ·
+[Scope](#scope-and-reproducibility) ·
 [Citation](#citation)
 
 </div>
@@ -151,7 +151,6 @@ The first two rows are parsed from the committed CSV logs and are the ones
 deepseanet report --results results
 ```
 
-
 ---
 
 ## The BiSkFPN neck
@@ -249,8 +248,8 @@ deepseanet convert --to coco --images data/brackish/images/train \
 **Why `--strategy grouped` is the default.** Frames come from continuous video,
 so consecutive frames are near-identical. A random split scatters
 near-duplicates across train and test, and every score goes up. Grouped
-splitting keeps whole source clips on one side. Expect lower numbers — that's
-the honest estimate. Details in [`docs/DATASET.md`](docs/DATASET.md).
+splitting keeps whole source clips on one side. Expect lower numbers — that is
+the conservative estimate. Details in [`docs/DATASET.md`](docs/DATASET.md).
 
 ---
 
@@ -265,36 +264,50 @@ bash scripts/fetch_weights.sh
 deepseanet verify --manifest results/checkpoints.json
 ```
 
-> **Heads up on filenames.** The checkpoints published in 2023 as
-> `best_efficientDet.pt` and `best_yolov8.pt` are, by MD5, the **YOLOv8** and
-> **YOLOv5** models respectively. Neither is EfficientDet, and the names are
-> swapped. Checksums and the full account are in
-> [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md#32-two-checkpoints-are-mislabelled).
+> **A note on filenames.** Two checkpoints archived in 2023 under
+> `5_GradCAM++/` carry names that do not match their contents: by MD5,
+> `best_efficientDet.pt` is the YOLOv8s model and `best_yolov8.pt` is the
+> YOLOv5s model. `scripts/fetch_weights.sh` downloads them under corrected
+> names and `deepseanet verify` checks every file against
+> [`results/checkpoints.json`](results/checkpoints.json), so this is handled
+> for you — it matters only if you are working from an old clone.
 
 ---
 
-## Reproducibility
+## Scope and reproducibility
 
-This repository is honest about the gap between the paper and the code. The
-short version:
+This repository is the archived code and logs from the project, plus reference
+implementations of the methods the paper describes. It is not a one-command
+regeneration of the published tables, and it is worth being precise about why:
 
-- **One run per detector** is committed; the paper reports five.
-- **BiSkFPN, Swish, the focal-loss head, UAP generation and adversarial
-  training were not in the original code.** The implementations in `src/` were
-  written from the paper's equations for this release. They are tested, but
-  they did not produce the published numbers.
-- The CAM notebooks run **EigenCAM**, not GradCAM++.
-- The committed YOLO runs used **100 epochs**, not the 350 in Table 4.
-- Tables 5 and 6 do not report one consistent metric.
+- **Archived runs.** One training run per detector is kept here; Table 5
+  reports the mean of five repetitions, and the repeated runs were not archived.
+- **Reference implementations.** The BiSkFPN neck, Swish, the multi-focal head,
+  UAP generation and the curriculum schedule in `src/` were written for this
+  release from the equations in the paper. They are tested for shape, gradient
+  flow and numerical behaviour, and they are the clearest statement of the
+  method available in code — but they are a re-implementation, so read their
+  output as independent of the published tables rather than as a regeneration
+  of them.
+- **Configuration.** The archived YOLO runs log 100 epochs where Table 4 lists
+  350, and the archived CAM notebooks use EigenCAM; `src/` provides GradCAM++
+  as well so the two can be compared directly.
+- **Metrics.** Tables 5 and 6 measure different things — one is a strict
+  averaged-IoU metric and the other is not — so they should not be read as two
+  views of a single number.
 
-Full account, with the evidence for each point:
-**[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)**.
+[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) records each point with the
+evidence behind it, and section 5 lists what *can* be reproduced from what is
+here.
 
 ### Known limitations of any result on this data
 
+These are properties of the dataset and the evaluation protocol. They apply to
+every published benchmark on Brackish, this work included.
+
 | | |
 |---|---|
-| **Split leakage** | Near-duplicate frames inflate every published score, including the paper's. |
+| **Split leakage** | Frames come from continuous video, so a random split places near-duplicates on both sides and raises every score. Use `--strategy grouped`. |
 | **AP@0.5 saturates** | Several detectors pass 0.97; AP@[.5:.95] separates them far better. |
 | **One site, one camera** | No evidence of transfer to other water, depths or hardware. |
 | **Class imbalance** | Shrimp and jellyfish are 3–4% of boxes; a single mean hides them. |
@@ -312,11 +325,8 @@ make report         # summarise the committed runs
 ```
 
 CI runs lint, tests on Python 3.9/3.11/3.12, and a `gitleaks` secret scan on
-every push. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
-> 🔐 **If you maintain a fork made before v2.0.0**, note that the 2023 release
-> contained live Roboflow credentials. They are removed here but remain in git
-> history. [`docs/SECURITY.md`](docs/SECURITY.md) explains what to rotate.
+every push, and the same scan is available as a pre-commit hook. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/SECURITY.md`](docs/SECURITY.md).
 
 ---
 
