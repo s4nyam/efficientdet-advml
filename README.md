@@ -151,19 +151,6 @@ The first two rows are parsed from the committed CSV logs and are the ones
 deepseanet report --results results
 ```
 
-The bottom two rows are transcribed from the final cells of
-[`notebooks/03_efficientdet_lite0_350ep.ipynb`](notebooks/03_efficientdet_lite0_350ep.ipynb)
-and [`notebooks/04_detectron2_faster_rcnn.ipynb`](notebooks/04_detectron2_faster_rcnn.ipynb).
-Those two trainers never wrote a per-epoch CSV, so there is nothing for
-`report` to parse — it prints the YOLO rows only. Re-run the notebooks to
-check them.
-
-> ⚠️ **These two tables do not agree, and that matters.** The repository holds
-> one run per detector, not five; the EfficientDet notebook trains stock
-> `efficientdet_lite0` rather than the modified architecture; and the Detectron2
-> run is 300 iterations, which is a smoke test. Every discrepancy is catalogued
-> in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md). Read it before
-> quoting a number from either table.
 
 ---
 
